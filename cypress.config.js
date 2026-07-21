@@ -13,7 +13,6 @@ module.exports = defineConfig({
     baseUrl: "https://opensource-demo.orangehrmlive.com/",
 
     setupNodeEvents(on, config) {
-      // Aquí irán los plugins o eventos cuando los necesites.
       return config;
     },
   },
