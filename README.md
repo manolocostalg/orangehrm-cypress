@@ -1,4 +1,4 @@
-# 🧪 Automatización de Pruebas UI con Cypress - OrangeHRM
+# 🧪 OrangeHRM — Automatización de Pruebas UI con Cypress
 
 ## 📌 Descripción
 
@@ -52,20 +52,41 @@ Durante el desarrollo de este proyecto se aplicaron los siguientes conocimientos
 ## 📁 Estructura del proyecto
 
 ```text
-orangehrm-ui-automatizacion/
-│
+orangehrm-cypress/
 ├── cypress/
 │   ├── e2e/
 │   │   └── orangehrm-ui-automation.cy.js
 │   ├── fixtures/
+│   │   ├── example.json
+│   │   ├── profile.json
+│   │   └── users.json
 │   └── support/
-│
-├── cypress.config.js
-├── package.json
-├── package-lock.json
+│       ├── commands.js
+│       └── e2e.js
+├── docs/
+│   ├── CHANGELOG.md
+│   ├── CONTEXT.md
+│   ├── ORIGINAL_PROJECT.md
+│   ├── PROJECT_BRIEF.md
+│   ├── PROJECT_STATUS.md
+│   └── ROADMAP.md
 ├── .gitignore
+├── cypress.config.js
+├── package-lock.json
+├── package.json
 └── README.md
 ```
+
+### Principales directorios
+
+* `cypress/e2e/` — Contiene los escenarios de prueba E2E.
+* `cypress/fixtures/` — Contiene archivos JSON utilizados como datos de prueba.
+* `cypress/support/` — Contiene archivos de soporte y configuración de Cypress.
+* `docs/` — Contiene la documentación técnica y de seguimiento del proyecto.
+* `cypress/screenshots/` — Directorio generado por Cypress para capturas de fallos.
+* `cypress/videos/` — Directorio generado por Cypress para videos de ejecución.
+
+Los directorios `screenshots/` y `videos/` son generados durante la ejecución y están excluidos del control de versiones mediante `.gitignore`.
 
 ---
 
@@ -74,13 +95,13 @@ orangehrm-ui-automatizacion/
 ### Clonar el repositorio
 
 ```bash
-git clone https://github.com/manolocostalg/orangehrm-ui-automatizacion.git
+git clone https://github.com/manolocostalg/orangehrm-cypress.git
 ```
 
 ### Acceder al proyecto
 
 ```bash
-cd orangehrm-ui-automatizacion
+cd orangehrm-cypress
 ```
 
 ### Instalar las dependencias
@@ -93,28 +114,39 @@ npm install
 
 ## ▶️ Ejecución de las pruebas
 
-### Abrir la interfaz gráfica de Cypress
+### Abrir Cypress en modo interactivo
 
 ```bash
 npx cypress open
 ```
+Permite ejecutar las pruebas desde la interfaz gráfica de Cypress y seleccionar el navegador disponible.
 
-### Ejecutar la prueba en Google Chrome
+### Ejecutar todas las pruebas
 
+```bash
+npm run run
+```
+Ejecuta todas las pruebas mediante la línea de comandos.
+
+
+### Ejecutar las pruebas en Google Chrome
 ```bash
 npm run prueba-chrome
 ```
 
-### Ejecutar la prueba en Microsoft Edge
-
+### Ejecutar las pruebas en Microsoft Edge
 ```bash
 npm run prueba-edge
 ```
 
-### Ejecutar la prueba en Electron
-
+### Ejecutar las pruebas en Electron
 ```bash
 npm run prueba-electron
+```
+
+Los scripts de ejecución están definidos en `package.json` y utilizan el archivo:
+```bash
+cypress/e2e/orangehrm-ui-automation.cy.js
 ```
 
 ---
@@ -139,57 +171,117 @@ Las validaciones realizadas incluyen:
 
 ## 📋 Casos de prueba automatizados
 
-| ID | Caso de prueba | Estado |
-|:---:|----------------|:------:|
-| TC-01 | Verificar carga de la página de Login | ✅ |
-| TC-02 | Validar los elementos principales de la interfaz | ✅ |
-| TC-03 | Inicio de sesión con credenciales válidas | ✅ |
-| TC-04 | Inicio de sesión con usuario inválido | ✅ |
-| TC-05 | Inicio de sesión con contraseña inválida | ✅ |
-| TC-06 | Validación de campos obligatorios | ✅ |
-| TC-07 | Verificar acceso al Dashboard | ✅ |
-| TC-08 | Verificar cierre de sesión (Logout) | ✅ |
+| ID | Caso de prueba | Validaciones principales | Estado |
+|:---:|----------------|--------------------------|:------:|
+| TC-01 | Verificar carga de la página de Login | URL de Login y visibilidad de los logotipos | ✅ |
+| TC-02 | Validar elementos principales del formulario de Login | Título, Username, Password, botón Login, recuperación de contraseña y redes sociales | ✅ |
+| TC-03 | Iniciar sesión con credenciales válidas | Acceso al Dashboard, validación del encabezado, Logout y regreso al Login | ✅ |
+| TC-04 | Iniciar sesión con contraseña incorrecta | Mensaje `Invalid credentials` y permanencia en Login | ✅ |
+| TC-05 | Iniciar sesión con usuario incorrecto | Mensaje `Invalid credentials` y permanencia en Login | ✅ |
+| TC-06 | Validar campos Username y Password obligatorios | Validación de dos mensajes `Required` | ✅ |
+
+### 📊 Resumen
+
+- **Total de casos automatizados:** 6
+- **Casos positivos:** 1
+- **Casos negativos:** 3
+- **Casos de validación de interfaz:** 1
+- **Casos de validación de campos obligatorios:** 1
+- **Estado:** ✅ Automatizados
 
 ---
 
 ## 📸 Evidencias
 
-Este apartado incluirá capturas de pantalla de la ejecución de las pruebas automatizadas y de los principales escenarios validados.
+El proyecto utiliza las funcionalidades de evidencia integradas en Cypress para generar automáticamente:
 
-**Ejemplo:**
+- Capturas de pantalla cuando una prueba falla.
+- Videos de las ejecuciones realizadas en modo headless.
+
+Los archivos generados durante las ejecuciones se almacenan localmente en:
 
 ```text
-docs/
-├── login-page.png
-├── dashboard.png
-├── cypress-open.png
-└── test-passed.png
+cypress/
+├── screenshots/
+└── videos/
 ```
+Estos directorios están excluidos del control de versiones mediante `.gitignore`.
 
-Una vez agregadas las imágenes podrán mostrarse así:
-
-```markdown
-![Página de Login](docs/login-page.png)
-
-![Dashboard](docs/dashboard.png)
-
-![Prueba Exitosa](docs/test-passed.png)
-```
 
 ---
 
-## 🚀 Cómo ejecutar este proyecto
+## 🚀 Cómo ejecutar el proyecto
 
-1. Clonar el repositorio.
-2. Instalar las dependencias mediante `npm install`.
-3. Ejecutar Cypress con `npx cypress open` o utilizar alguno de los scripts definidos en `package.json`.
-4. Seleccionar el navegador deseado y ejecutar la prueba automatizada.
+Para ejecutar el proyecto localmente:
+
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/manolocostalg/orangehrm-cypress.git
+```
+
+2. Acceder al directorio del proyecto:
+```bash
+cd orangehrm-cypress
+```
+
+3. Instalar las dependencias:
+```bash
+npm install
+```
+
+4. Ejecutar Cypress mediante la interfaz gráfica:
+```bash
+npx cypress open
+```
+
+5. Seleccionar E2E Testing.
+
+6. Seleccionar el navegador disponible.
+
+7. Ejecutar el archivo:
+```bash
+cypress/e2e/orangehrm-ui-automation.cy.js
+```
+
+También es posible ejecutar las pruebas directamente desde la línea de comandos utilizando los scripts definidos en `package.json`.
 
 ---
+
 
 ## 📊 Estado del proyecto
 
-🟢 **Proyecto finalizado y publicado** como parte de mi portafolio de **QA Automation Engineer**.
+### Automatización
+
+🟢 **Finalizada**
+
+El proyecto cuenta con una suite de pruebas E2E funcional para validar el módulo de autenticación de OrangeHRM.
+
+Los escenarios automatizados contemplan:
+
+- Carga de la página de Login.
+- Validación de elementos principales.
+- Inicio de sesión con credenciales válidas.
+- Validación de credenciales inválidas.
+- Validación de campos obligatorios.
+- Acceso al Dashboard.
+- Cierre de sesión.
+
+### Estandarización
+
+🟡 **En proceso**
+
+Actualmente el proyecto se encuentra en una etapa de estandarización para alinearlo con la estructura, documentación e identidad visual establecidas para el portafolio de QA Automation.
+
+Esta etapa contempla:
+
+- Organización del repositorio.
+- Estandarización de la documentación.
+- Actualización del README.
+- Organización de la estructura documental.
+- Revisión de evidencias.
+- Revisión final del repositorio.
+
+La estandarización **no contempla una refactorización del código de automatización existente**.
 
 ---
 
